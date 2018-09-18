@@ -1,0 +1,26 @@
+# /etc/conf.d/rdctd: config file for /etc/init.d/rdctd
+
+# Config file location
+#BITCOIND_CONFIGFILE="/etc/rdct/rdct.conf"
+
+# What directory to write pidfile to?  (created and owned by $BITCOIND_USER)
+#BITCOIND_PIDDIR="/var/run/rdctd"
+
+# What filename to give the pidfile
+#BITCOIND_PIDFILE="${BITCOIND_PIDDIR}/rdctd.pid"
+
+# Where to write rdctd data (be mindful that the blockchain is large)
+#BITCOIND_DATADIR="/var/lib/rdctd"
+
+# User and group to own rdctd process
+#BITCOIND_USER="rdct"
+#BITCOIND_GROUP="rdct"
+
+# Path to rdctd executable
+#BITCOIND_BIN="/usr/bin/rdctd"
+
+# Nice value to run rdctd under
+#BITCOIND_NICE=0
+
+# Additional options (avoid -conf and -datadir, use flags above)
+BITCOIND_OPTS=""

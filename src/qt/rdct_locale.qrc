@@ -1,0 +1,29 @@
+<!DOCTYPE RCC><RCC version="1.0">
+    <qresource prefix="/translations">
+        <file alias="bg">locale/rdct_bg.qm</file>
+        <file alias="ca">locale/rdct_ca.qm</file>
+        <file alias="cs">locale/rdct_cs.qm</file>
+        <file alias="da">locale/rdct_da.qm</file>
+        <file alias="de">locale/rdct_de.qm</file>
+        <file alias="en">locale/rdct_en.qm</file>
+        <file alias="en_US">locale/rdct_en_US.qm</file>
+        <file alias="es">locale/rdct_es.qm</file>
+        <file alias="fi">locale/rdct_fi.qm</file>
+        <file alias="fr_FR">locale/rdct_fr_FR.qm</file>
+        <file alias="it">locale/rdct_it.qm</file>
+        <file alias="ja">locale/rdct_ja.qm</file>
+        <file alias="ko_KR">locale/rdct_ko_KR.qm</file>
+        <file alias="nl">locale/rdct_nl.qm</file>
+        <file alias="pl">locale/rdct_pl.qm</file>
+        <file alias="pt">locale/rdct_pt.qm</file>
+        <file alias="pt_BR">locale/rdct_pt_BR.qm</file>
+        <file alias="ro_RO">locale/rdct_ro_RO.qm</file>
+        <file alias="ru">locale/rdct_ru.qm</file>
+        <file alias="sk">locale/rdct_sk.qm</file>
+        <file alias="sv">locale/rdct_sv.qm</file>
+        <file alias="tr">locale/rdct_tr.qm</file>
+        <file alias="uk">locale/rdct_uk.qm</file>
+        <file alias="zh_CN">locale/rdct_zh_CN.qm</file>
+        <file alias="zh_TW">locale/rdct_zh_TW.qm</file>
+    </qresource>
+</RCC>
