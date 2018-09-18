@@ -19,7 +19,7 @@ O RDCT é uma Moeda virtual criptografada descentralizada, de código aberto, po
 <br>
 <br>
 <p>
- Block explorer: <a href="https://explorer.rdctoken.io/" target="_blank">http://explorer.rdctoken.io/</a>
+ Block explorer: <a href="https://explorer.rdctoken.io/" target="_blank">https://explorer.rdctoken.io/</a>
 </p>
 
 <p>
@@ -30,5 +30,5 @@ O RDCT é uma Moeda virtual criptografada descentralizada, de código aberto, po
 <br>
 <br>
 <p>
-Maiores informações [RDCToken.io](http://www.RDCToken.io) Breve ANN
+Maiores informações [RDCToken.io](https://www.RDCToken.io) Breve ANN
  </p>
