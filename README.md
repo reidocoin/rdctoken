@@ -25,9 +25,25 @@ O RDCT é uma Moeda virtual criptografada descentralizada, de código aberto, po
 <p>
  Masternode compartilhado: <a href="https://www.4stake.com/rdctoken" target="_blank">https://www.4stake.com/rdctoken</a>
 </p>
-
-
 <br>
+
+<p>
+ <h3>Addnodes:</h3>
+<pre>
+addnode=n1.rdctoken.io:49846
+addnode=n2.rdctoken.io:49846
+addnode=n3.rdctoken.io:49846
+addnode=n4.rdctoken.io:49846
+addnode=n5.rdctoken.io:49846
+addnode=n6.rdctoken.io:49846
+addnode=n7.rdctoken.io:49846
+addnode=n8.rdctoken.io:49846
+addnode=n9.rdctoken.io:49846
+addnode=n10.rdctoken.io:49846
+</pre>
+</p>
+<br>
+
 <br>
 <p>
 Maiores informações [RDCToken.io](https://www.RDCToken.io) Breve ANN
