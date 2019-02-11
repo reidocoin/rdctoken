@@ -46,5 +46,11 @@ addnode=n10.rdctoken.io:49846
 
 <br>
 <p>
-Maiores informações [RDCToken.io](https://www.RDCToken.io) Breve ANN
+Maiores informações [RDCToken.io] (https://rdctoken.io/pt-br.html)
  </p>
+ <p><a href="https://bitcointalk.org/index.php?topic=5107324.msg49630438#msg49630438" target="_blank">Anúncio no Bitcointalk</a>
+
+
+
+
+
