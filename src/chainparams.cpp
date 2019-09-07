@@ -57,12 +57,32 @@ static Checkpoints::MapCheckpoints mapCheckpoints =
     (1, uint256("0x73c3ae7b97789ab6634b8204e2f7d5be4f0d8765443f8fad04042dd5908411fe"))
     (200, uint256("0x000000f44e9983594124f73594056af2ca0e79140a95f6973a69896905d052fb"))
     (500, uint256("0x0dae3b5e357a09d5efe73dd2f444f07fce9f703edb46385ebdb635f12cc18dfd"))
-    (1000, uint256("0xf793a67f23bc96c174f4cf183b0d61cf51265e94a585fe06c8c9f0a5d938061f"));
+    (1000, uint256("0xf793a67f23bc96c174f4cf183b0d61cf51265e94a585fe06c8c9f0a5d938061f"))
+    (5000, uint256("0xceaaf70ca45342d3651bc9e7b5129b3a735f74dce57608f0c85ba46d1167af2f"))
+    (10000, uint256("0xa9313a5d3f0bf2c7e61f6555420abe107e5737c569b06c8689e87b80c3ecc14c"))
+    (15000, uint256("0xdd567dcde2a313f2fa9dc5b4d94b50ed6132bec4f352122e66c18e0f6803cee8"))
+    (20000, uint256("0x71e5dbbf9d196f11e5ea638e8aae70aaf602dc28614d8d0bb63e0fdc448f8b22"))
+    (25000, uint256("0x23f4aca724243927f7006308bb934b5554a6614ac79b732cfa4a01ed4721e7fb"))
+    (30000, uint256("0xbda2792598a7c601576bc32c3384b44751b68589402811dacf56389c099c6429"))
+    (35000, uint256("0xa7829e9edf895a3ee572e801d8f0c30f6ab613fa00f18cc699d152a32309d61c"))
+    (40000, uint256("0x2f3a0a5bd178b3f06d63b0e34eaf2140ab9ffb7f4ca721fa98a81fabd6d1e2c1"))
+    (45000, uint256("0xf172337991fe3c23cbc8934c1ee93a118d1f5600b41e22094a7c4157f21f8d0b"))
+    (50000, uint256("0xddb02f25072c531bc20280bfe4e788776c41336e81c1d627433182197603d661"))
+    (100000, uint256("0xdb9755cde5bead196cf55cbfa02dae7c9ac2480a10640f2e79ac8d61e0cbc35b"))
+    (150000, uint256("0x250ad64a7751ae939d6eafda3e39ea81f72bdfcbff17fc02b40f17cf60889408"))
+    (200000, uint256("0x4cfdbad17342d7525ac1efceb33c9b4533ec867506a9acd36a2736f2a405fbdc"))
+    (250000, uint256("0x611982ef6c6507d95030efbacb8f9b03b51b50b69581ceccd62a1f338954819e"))
+    (300000, uint256("0x7a36f018bbcc8163700dd7e267a7c0b3ba3d61e68b1889420346b846157858ff"))
+    (350000, uint256("0x233147d79169ccfccdd54c676f9e26554055c37fd49b6fc84e2ad3d7facdf626"))
+    (400000, uint256("0x556cf2d42b095fdaf54063e27fc09cca7349e04170e948813be6306e9667dc5c"))
+    (450000, uint256("0x8bbf04fb7f2a45e1953d1b4559f14705f8deb891079a0a94e66371c2d2e8a519"))
+    (500000, uint256("0xac2ca5b5f5279055618ab6008be901375fc342cf253f765bcdac47ea805a581e"))
+    (505775, uint256("0xb80b66d6199e74438221c99f5b55a461371b0abfd58a6e1dcdd55fd478c86e71"));
 
 static const Checkpoints::CCheckpointData data = {
     &mapCheckpoints,
-    1537280281,  // * UNIX timestamp of last checkpoint block
-    1803,        // * total number of transactions between genesis and last checkpoint
+    1567871245,  // * UNIX timestamp of last checkpoint block
+    1039301,        // * total number of transactions between genesis and last checkpoint
                  //   (the tx=... number in the SetBestChain debug.log lines)
     3000         // * estimated number of transactions per day after checkpoint
 };
