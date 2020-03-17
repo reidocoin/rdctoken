@@ -171,8 +171,16 @@ public:
         assert(hashGenesisBlock == uint256("0x00000d794731fe98c6d703116f701b7437336832e49bbeb46d983e07e23bbb6e"));
         assert(genesis.hashMerkleRoot == uint256("0xedb2d2a03f5676ffdb180390996514caca485fed3890e27afb06f4feb8a6efcf"));
 
+        vFixedSeeds.clear();
+        vSeeds.clear();
+
         // DNS Seeding
-        vSeeds.push_back(CDNSSeedData("seed1.rdctoken.io", "seed1.rdctoken.io"));
+        vSeeds.push_back(CDNSSeedData("rdctoken.io", "seed1.rdctoken.io"));
+        vSeeds.push_back(CDNSSeedData("rdctoken.io", "seed2.rdctoken.io"));
+        vSeeds.push_back(CDNSSeedData("rdctoken.io", "seed3.rdctoken.io"));
+        vSeeds.push_back(CDNSSeedData("rdctoken.io", "seed4.rdctoken.io"));
+        vSeeds.push_back(CDNSSeedData("rdctoken.io", "seed5.rdctoken.io"));
+        vSeeds.push_back(CDNSSeedData("rdctoken.io", "seed6.rdctoken.io"));
 
         // RDCT coin addresses start with 'R'
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 60);
