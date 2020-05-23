@@ -43,6 +43,8 @@ src/config/stamp-h1
 share/setup.nsi
 share/qt/Info.plist
 contrib/devtools/split-debug.sh
+contrib/gitian-builder
+contrib/rdctoken
 
 src/univalue/gen
 
@@ -139,4 +141,3 @@ src/univalue/pc/libunivalue.pc
 src/univalue/stamp-h1
 src/univalue/univalue-config.h
 src/univalue/univalue-config.h.in
-
