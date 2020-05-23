@@ -13,6 +13,8 @@ src/rdct-cli
 src/rdct-tx
 src/test/test_rdct
 src/qt/test/test_rdct-qt
+contrib/rdctoken
+contrib/rdct-binaries
 
 # autoreconf
 Makefile.in
@@ -132,4 +134,3 @@ cmake-build-debug
 
 moc_*
 *.tmp
-build*

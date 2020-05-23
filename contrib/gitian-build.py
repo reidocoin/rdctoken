@@ -106,7 +106,7 @@ def setup_repos():
     if not os.path.isdir('gitian-builder'):
         subprocess.check_call(['git', 'clone', 'https://github.com/devrandom/gitian-builder.git'])
     if not os.path.isdir('rdct'):
-        subprocess.check_call(['git', 'clone', 'https://github.com/rdct-Project/rdct.git'])
+        subprocess.check_call(['git', 'clone', 'https://github.com/reidocoin/rdctoken.git'])
     os.chdir('gitian-builder')
     make_image_prog = ['bin/make-base-vm', '--suite', 'bionic', '--arch', 'amd64']
     if args.docker:
@@ -142,7 +142,7 @@ def build():
     subprocess.check_call(['wget', '-N', '-P', 'inputs', 'https://bitcoincore.org/cfields/osslsigncode-Backports-to-1.7.1.patch'])
     subprocess.check_call(["echo 'a8c4e9cafba922f89de0df1f2152e7be286aba73f78505169bc351a7938dd911 inputs/osslsigncode-Backports-to-1.7.1.patch' | sha256sum -c"], shell=True)
     subprocess.check_call(["echo 'f9a8cdb38b9c309326764ebc937cba1523a3a751a7ab05df3ecc99d18ae466c9 inputs/osslsigncode-1.7.1.tar.gz' | sha256sum -c"], shell=True)
-    subprocess.check_call(['make', '-C', '../rdct/depends', 'download', 'SOURCES_PATH=' + os.getcwd() + '/cache/common'])
+    subprocess.check_call(['make', '-C', '../rdctoken/depends', 'download', 'SOURCES_PATH=' + os.getcwd() + '/cache/common'])
 
     if args.linux:
         print('\nCompiling ' + args.version + ' Linux')
@@ -355,12 +355,12 @@ def main():
         raise Exception('Cannot have both commit and pull')
     args.commit = ('' if args.commit else 'v') + args.version
 
-    os.chdir('rdct')
+    os.chdir('rdctoken')
     if args.pull:
         subprocess.check_call(['git', 'fetch', args.url, 'refs/pull/'+args.version+'/merge'])
-        if not os.path.isdir('../gitian-builder/inputs/rdct'):
-            os.makedirs('../gitian-builder/inputs/rdct')
-        os.chdir('../gitian-builder/inputs/rdct')
+        if not os.path.isdir('../gitian-builder/inputs/rdctoken'):
+            os.makedirs('../gitian-builder/inputs/rdctoken')
+        os.chdir('../gitian-builder/inputs/rdctoken')
         if not os.path.isdir('.git'):
             subprocess.check_call(['git', 'init'])
         subprocess.check_call(['git', 'fetch', args.url, 'refs/pull/'+args.version+'/merge'])

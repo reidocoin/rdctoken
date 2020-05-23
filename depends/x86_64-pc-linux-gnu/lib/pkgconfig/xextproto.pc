@@ -1,9 +1,0 @@
-prefix=/home/brunoha/src/rdctoken/depends/x86_64-pc-linux-gnu
-exec_prefix=${prefix}
-libdir=${exec_prefix}/lib
-includedir=${prefix}/include
- 
-Name: XExtProto
-Description: XExt extension headers
-Version: 7.3.0
-Cflags: -I${includedir}
