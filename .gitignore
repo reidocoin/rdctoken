@@ -1,3 +1,4 @@
+.gitignore
 *.sublime-project
 *.sublime-workspace
 todo.txt
@@ -43,8 +44,6 @@ src/config/stamp-h1
 share/setup.nsi
 share/qt/Info.plist
 contrib/devtools/split-debug.sh
-contrib/gitian-builder
-contrib/rdctoken
 
 src/univalue/gen
 
@@ -86,8 +85,8 @@ src/qt/test/moc*.cpp
 *.qm
 Makefile
 rdct-qt
-RDCT-Qt.app
-depends/x86_64-w64-mingw32
+RDCToken-Qt.app
+background.tiff*
 
 # Unit-tests
 Makefile.test
@@ -115,10 +114,13 @@ coverage_percent.txt
 linux-coverage-build
 linux-build
 win32-build
+test/config.ini
+test/cache/*
 qa/pull-tester/run-bitcoind-for-test.sh
 qa/pull-tester/tests-config.sh
 qa/pull-tester/cache/*
 qa/pull-tester/test.*/*
+cache/*
 
 !src/leveldb*/Makefile
 
@@ -126,18 +128,14 @@ qa/pull-tester/test.*/*
 .project
 /doc/doxygen/
 /nbproject/
-
+libbitcoinconsensus.pc
 .idea
 CMakeLists.txt
 cmake-build-debug
 
-
-src/config/rdct-config.h
-
-src/leveldb/build_config.mk
-src/univalue/build-aux/*
-src/univalue/pc/libunivalue-uninstalled.pc
-src/univalue/pc/libunivalue.pc
-src/univalue/stamp-h1
-src/univalue/univalue-config.h
-src/univalue/univalue-config.h.in
+moc_*
+*.tmp
+ui_*
+build*
+rdctd.*
+rdctd-new-gui.*
