@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-#  rdctd The RDCT core server.
+#  rdctd The PIVX core server.
 #
 #
 # chkconfig: 345 80 20

@@ -10,14 +10,14 @@ setupenv=false
 
 # Systems to build
 linux=true
-windows=true
-osx=true
+windows=false
+osx=false
 
 # Other Basic variables
 SIGNER=
 VERSION=
 commit=false
-url=https://github.com/rdct/rdct
+url=https://github.com/reidocoin/rdctoken
 proc=2
 mem=2000
 lxc=true
@@ -25,13 +25,13 @@ osslTarUrl=http://downloads.sourceforge.net/project/osslsigncode/osslsigncode/os
 osslPatchUrl=https://bitcoincore.org/cfields/osslsigncode-Backports-to-1.7.1.patch
 scriptName=$(basename -- "$0")
 signProg="gpg --detach-sign"
-commitFiles=true
+commitFiles=false
 
 # Help Message
 read -d '' usage <<- EOF
 Usage: $scriptName [-c|u|v|b|s|B|o|h|j|m|] signer version
 
-Run this script from the directory containing the rdct, gitian-builder, gitian.sigs, and rdct-detached-sigs.
+Run this script from the directory containing the rdctoken, gitian-builder, gitian.sigs, and rdctoken-detached-sigs.
 
 Arguments:
 signer          GPG signer to sign each build assert file
@@ -39,7 +39,7 @@ version		Version number, commit, or branch to build. If building a commit or bra
 
 Options:
 -c|--commit	Indicate that the version argument is for a commit or branch
--u|--url	Specify the URL of the repository. Default is https://github.com/rdct/rdct
+-u|--url	Specify the URL of the repository. Default is https://github.com/rdctoken/rdctoken
 -v|--verify 	Verify the gitian build
 -b|--build	Do a gitian build
 -s|--sign	Make signed binaries for Windows and Mac OSX
@@ -237,8 +237,8 @@ echo ${COMMIT}
 if [[ $setup = true ]]
 then
     sudo apt-get install ruby apache2 git apt-cacher-ng python-vm-builder qemu-kvm qemu-utils
-    git clone https://github.com/rdct/gitian.sigs.git
-    git clone https://github.com/rdct/rdct-detached-sigs.git
+    git clone https://github.com/reidocoin/rdctoken.git
+    # git clone https://github.com/rdctoken/rdctoken-detached-sigs.git
     git clone https://github.com/devrandom/gitian-builder.git
     pushd ./gitian-builder
     if [[ -n "$USE_LXC" ]]
@@ -252,7 +252,7 @@ then
 fi
 
 # Set up build
-pushd ./rdct
+pushd ./rdctoken
 git fetch
 git checkout ${COMMIT}
 popd
@@ -261,7 +261,7 @@ popd
 if [[ $build = true ]]
 then
 	# Make output folder
-	mkdir -p ./rdct-binaries/${VERSION}
+	mkdir -p ./rdctoken-binaries/${VERSION}
 
 	# Build Dependencies
 	echo ""
@@ -271,7 +271,7 @@ then
 	mkdir -p inputs
 	wget -N -P inputs $osslPatchUrl
 	wget -N -P inputs $osslTarUrl
-	make -C ../rdct/depends download SOURCES_PATH=`pwd`/cache/common
+	make -C ../rdctoken/depends download SOURCES_PATH=`pwd`/cache/common
 
 	# Linux
 	if [[ $linux = true ]]
@@ -279,9 +279,9 @@ then
             echo ""
 	    echo "Compiling ${VERSION} Linux"
 	    echo ""
-	    ./bin/gbuild -j ${proc} -m ${mem} --commit rdct=${COMMIT} --url rdct=${url} ../rdct/contrib/gitian-descriptors/gitian-linux.yml
-	    ./bin/gsign -p $signProg --signer $SIGNER --release ${VERSION}-linux --destination ../gitian.sigs/ ../rdct/contrib/gitian-descriptors/gitian-linux.yml
-	    mv build/out/rdct-*.tar.gz build/out/src/rdct-*.tar.gz ../rdct-binaries/${VERSION}
+	    ./bin/gbuild -j ${proc} -m ${mem} --commit rdctoken=${COMMIT} --url rdctoken=${url} ../rdctoken/contrib/gitian-descriptors/gitian-linux.yml
+	    # ./bin/gsign -p $signProg --signer $SIGNER --release ${VERSION}-linux --destination ../gitian.sigs/ ../rdctoken/contrib/gitian-descriptors/gitian-linux.yml
+	    mv build/out/rdctoken-*.tar.gz build/out/src/rdctoken-*.tar.gz ../rdctoken-binaries/${VERSION}
 	fi
 	# Windows
 	if [[ $windows = true ]]
@@ -289,10 +289,10 @@ then
 	    echo ""
 	    echo "Compiling ${VERSION} Windows"
 	    echo ""
-	    ./bin/gbuild -j ${proc} -m ${mem} --commit rdct=${COMMIT} --url rdct=${url} ../rdct/contrib/gitian-descriptors/gitian-win.yml
-	    ./bin/gsign -p $signProg --signer $SIGNER --release ${VERSION}-win-unsigned --destination ../gitian.sigs/ ../rdct/contrib/gitian-descriptors/gitian-win.yml
-	    mv build/out/rdct-*-win-unsigned.tar.gz inputs/rdct-win-unsigned.tar.gz
-	    mv build/out/rdct-*.zip build/out/rdct-*.exe ../rdct-binaries/${VERSION}
+	    ./bin/gbuild -j ${proc} -m ${mem} --commit rdctoken=${COMMIT} --url rdctoken=${url} ../rdctoken/contrib/gitian-descriptors/gitian-win.yml
+	    # ./bin/gsign -p $signProg --signer $SIGNER --release ${VERSION}-win-unsigned --destination ../gitian.sigs/ ../rdctoken/contrib/gitian-descriptors/gitian-win.yml
+	    mv build/out/rdctoken-*-win-unsigned.tar.gz inputs/rdctoken-win-unsigned.tar.gz
+	    mv build/out/rdctoken-*.zip build/out/rdctoken-*.exe ../rdctoken-binaries/${VERSION}
 	fi
 	# Mac OSX
 	if [[ $osx = true ]]
@@ -300,10 +300,10 @@ then
 	    echo ""
 	    echo "Compiling ${VERSION} Mac OSX"
 	    echo ""
-	    ./bin/gbuild -j ${proc} -m ${mem} --commit rdct=${COMMIT} --url rdct=${url} ../rdct/contrib/gitian-descriptors/gitian-osx.yml
-	    ./bin/gsign -p $signProg --signer $SIGNER --release ${VERSION}-osx-unsigned --destination ../gitian.sigs/ ../rdct/contrib/gitian-descriptors/gitian-osx.yml
-	    mv build/out/rdct-*-osx-unsigned.tar.gz inputs/rdct-osx-unsigned.tar.gz
-	    mv build/out/rdct-*.tar.gz build/out/rdct-*.dmg ../rdct-binaries/${VERSION}
+	    ./bin/gbuild -j ${proc} -m ${mem} --commit rdctoken=${COMMIT} --url rdctoken=${url} ../rdctoken/contrib/gitian-descriptors/gitian-osx.yml
+	    # ./bin/gsign -p $signProg --signer $SIGNER --release ${VERSION}-osx-unsigned --destination ../gitian.sigs/ ../rdctoken/contrib/gitian-descriptors/gitian-osx.yml
+	    mv build/out/rdctoken-*-osx-unsigned.tar.gz inputs/rdctoken-osx-unsigned.tar.gz
+	    # mv build/out/rdctoken-*.tar.gz build/out/rdctoken-*.dmg ../rdctoken-binaries/${VERSION}
 	fi
 	# AArch64
 	if [[ $aarch64 = true ]]
@@ -311,102 +311,104 @@ then
 	    echo ""
 	    echo "Compiling ${VERSION} AArch64"
 	    echo ""
-	    ./bin/gbuild -j ${proc} -m ${mem} --commit rdct=${COMMIT} --url rdct=${url} ../rdct/contrib/gitian-descriptors/gitian-aarch64.yml
-	    ./bin/gsign -p $signProg --signer $SIGNER --release ${VERSION}-aarch64 --destination ../gitian.sigs/ ../rdct/contrib/gitian-descriptors/gitian-aarch64.yml
-	    mv build/out/rdct-*.tar.gz build/out/src/rdct-*.tar.gz ../rdct-binaries/${VERSION}
+	    ./bin/gbuild -j ${proc} -m ${mem} --commit rdctoken=${COMMIT} --url rdctoken=${url} ../rdctoken/contrib/gitian-descriptors/gitian-aarch64.yml
+	    ./bin/gsign -p $signProg --signer $SIGNER --release ${VERSION}-aarch64 --destination ../gitian.sigs/ ../rdctoken/contrib/gitian-descriptors/gitian-aarch64.yml
+	    mv build/out/rdctoken-*.tar.gz build/out/src/rdctoken-*.tar.gz ../rdctoken-binaries/${VERSION}
+  fi
+
 	popd
 
-        if [[ $commitFiles = true ]]
-        then
-	    # Commit to gitian.sigs repo
-            echo ""
-            echo "Committing ${VERSION} Unsigned Sigs"
-            echo ""
-            pushd gitian.sigs
-            git add ${VERSION}-linux/${SIGNER}
-            git add ${VERSION}-aarch64/${SIGNER}
-            git add ${VERSION}-win-unsigned/${SIGNER}
-            git add ${VERSION}-osx-unsigned/${SIGNER}
-            git commit -a -m "Add ${VERSION} unsigned sigs for ${SIGNER}"
-            popd
-        fi
+  if [[ $commitFiles = true ]]
+  then
+# Commit to gitian.sigs repo
+      echo ""
+      echo "Committing ${VERSION} Unsigned Sigs"
+      echo ""
+      pushd gitian.sigs
+      git add ${VERSION}-linux/${SIGNER}
+      git add ${VERSION}-aarch64/${SIGNER}
+      git add ${VERSION}-win-unsigned/${SIGNER}
+      git add ${VERSION}-osx-unsigned/${SIGNER}
+      git commit -a -m "Add ${VERSION} unsigned sigs for ${SIGNER}"
+      popd
+  fi
 fi
 
 # Verify the build
-if [[ $verify = true ]]
-then
-	# Linux
-	pushd ./gitian-builder
-	echo ""
-	echo "Verifying v${VERSION} Linux"
-	echo ""
-	./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-linux ../rdct/contrib/gitian-descriptors/gitian-linux.yml
-	# Windows
-	echo ""
-	echo "Verifying v${VERSION} Windows"
-	echo ""
-	./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-win-unsigned ../rdct/contrib/gitian-descriptors/gitian-win.yml
-	# Mac OSX
-	echo ""
-	echo "Verifying v${VERSION} Mac OSX"
-	echo ""
-	./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-osx-unsigned ../rdct/contrib/gitian-descriptors/gitian-osx.yml
-	# AArch64
-	echo ""
-	echo "Verifying v${VERSION} AArch64"
-	echo ""
-	./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-aarch64 ../rdct/contrib/gitian-descriptors/gitian-aarch64.yml
-	# Signed Windows
-	echo ""
-	echo "Verifying v${VERSION} Signed Windows"
-	echo ""
-	./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-osx-signed ../rdct/contrib/gitian-descriptors/gitian-osx-signer.yml
-	# Signed Mac OSX
-	echo ""
-	echo "Verifying v${VERSION} Signed Mac OSX"
-	echo ""
-	./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-osx-signed ../rdct/contrib/gitian-descriptors/gitian-osx-signer.yml
-	popd
-fi
+# if [[ $verify = true ]]
+# then
+# 	# Linux
+# 	pushd ./gitian-builder
+# 	echo ""
+# 	echo "Verifying v${VERSION} Linux"
+# 	echo ""
+# 	./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-linux ../rdctoken/contrib/gitian-descriptors/gitian-linux.yml
+# 	# Windows
+# 	echo ""
+# 	echo "Verifying v${VERSION} Windows"
+# 	echo ""
+# 	./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-win-unsigned ../rdctoken/contrib/gitian-descriptors/gitian-win.yml
+# 	# Mac OSX
+# 	echo ""
+# 	echo "Verifying v${VERSION} Mac OSX"
+# 	echo ""
+# 	./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-osx-unsigned ../rdctoken/contrib/gitian-descriptors/gitian-osx.yml
+# 	# AArch64
+# 	echo ""
+# 	echo "Verifying v${VERSION} AArch64"
+# 	echo ""
+# 	./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-aarch64 ../rdctoken/contrib/gitian-descriptors/gitian-aarch64.yml
+# 	# Signed Windows
+# 	echo ""
+# 	echo "Verifying v${VERSION} Signed Windows"
+# 	echo ""
+# 	./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-osx-signed ../rdctoken/contrib/gitian-descriptors/gitian-osx-signer.yml
+# 	# Signed Mac OSX
+# 	echo ""
+# 	echo "Verifying v${VERSION} Signed Mac OSX"
+# 	echo ""
+# 	./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-osx-signed ../rdctoken/contrib/gitian-descriptors/gitian-osx-signer.yml
+# 	popd
+# fi
 
 # Sign binaries
-if [[ $sign = true ]]
-then
-
-        pushd ./gitian-builder
-	# Sign Windows
-	if [[ $windows = true ]]
-	then
-	    echo ""
-	    echo "Signing ${VERSION} Windows"
-	    echo ""
-	    ./bin/gbuild -i --commit signature=${COMMIT} ../rdct/contrib/gitian-descriptors/gitian-win-signer.yml
-	    ./bin/gsign -p $signProg --signer $SIGNER --release ${VERSION}-win-signed --destination ../gitian.sigs/ ../rdct/contrib/gitian-descriptors/gitian-win-signer.yml
-	    mv build/out/rdct-*win64-setup.exe ../rdct-binaries/${VERSION}
-	    mv build/out/rdct-*win32-setup.exe ../rdct-binaries/${VERSION}
-	fi
-	# Sign Mac OSX
-	if [[ $osx = true ]]
-	then
-	    echo ""
-	    echo "Signing ${VERSION} Mac OSX"
-	    echo ""
-	    ./bin/gbuild -i --commit signature=${COMMIT} ../rdct/contrib/gitian-descriptors/gitian-osx-signer.yml
-	    ./bin/gsign -p $signProg --signer $SIGNER --release ${VERSION}-osx-signed --destination ../gitian.sigs/ ../rdct/contrib/gitian-descriptors/gitian-osx-signer.yml
-	    mv build/out/rdct-osx-signed.dmg ../rdct-binaries/${VERSION}/rdct-${VERSION}-osx.dmg
-	fi
-	popd
-
-        if [[ $commitFiles = true ]]
-        then
-            # Commit Sigs
-            pushd gitian.sigs
-            echo ""
-            echo "Committing ${VERSION} Signed Sigs"
-            echo ""
-            git add ${VERSION}-win-signed/${SIGNER}
-            git add ${VERSION}-osx-signed/${SIGNER}
-            git commit -a -m "Add ${VERSION} signed binary sigs for ${SIGNER}"
-            popd
-        fi
-fi
+# if [[ $sign = true ]]
+# then
+#
+#         pushd ./gitian-builder
+# 	# Sign Windows
+# 	if [[ $windows = true ]]
+# 	then
+# 	    echo ""
+# 	    echo "Signing ${VERSION} Windows"
+# 	    echo ""
+# 	    ./bin/gbuild -i --commit signature=${COMMIT} ../rdctoken/contrib/gitian-descriptors/gitian-win-signer.yml
+# 	    ./bin/gsign -p $signProg --signer $SIGNER --release ${VERSION}-win-signed --destination ../gitian.sigs/ ../rdctoken/contrib/gitian-descriptors/gitian-win-signer.yml
+# 	    mv build/out/rdctoken-*win64-setup.exe ../rdctoken-binaries/${VERSION}
+# 	    mv build/out/rdctoken-*win32-setup.exe ../rdctoken-binaries/${VERSION}
+# 	fi
+# 	# Sign Mac OSX
+# 	if [[ $osx = true ]]
+# 	then
+# 	    echo ""
+# 	    echo "Signing ${VERSION} Mac OSX"
+# 	    echo ""
+# 	    ./bin/gbuild -i --commit signature=${COMMIT} ../rdctoken/contrib/gitian-descriptors/gitian-osx-signer.yml
+# 	    ./bin/gsign -p $signProg --signer $SIGNER --release ${VERSION}-osx-signed --destination ../gitian.sigs/ ../rdctoken/contrib/gitian-descriptors/gitian-osx-signer.yml
+# 	    mv build/out/rdctoken-osx-signed.dmg ../rdctoken-binaries/${VERSION}/rdctoken-${VERSION}-osx.dmg
+# 	fi
+# 	popd
+#
+#         if [[ $commitFiles = true ]]
+#         then
+#             # Commit Sigs
+#             pushd gitian.sigs
+#             echo ""
+#             echo "Committing ${VERSION} Signed Sigs"
+#             echo ""
+#             git add ${VERSION}-win-signed/${SIGNER}
+#             git add ${VERSION}-osx-signed/${SIGNER}
+#             git commit -a -m "Add ${VERSION} signed binary sigs for ${SIGNER}"
+#             popd
+#         fi
+# fi

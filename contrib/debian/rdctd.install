@@ -1,2 +1,3 @@
 usr/local/bin/rdctd usr/bin
 usr/local/bin/rdct-cli usr/bin
+debian/examples/rdct.conf etc/rdct

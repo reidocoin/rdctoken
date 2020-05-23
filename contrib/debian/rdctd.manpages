@@ -1,2 +1,2 @@
-debian/manpages/rdctd.1
-debian/manpages/rdct.conf.5
+doc/man/rdctd.1
+doc/man/rdct-cli.1

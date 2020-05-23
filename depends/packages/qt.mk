@@ -40,7 +40,6 @@ $(package)_config_opts += -no-cups
 $(package)_config_opts += -no-egl
 $(package)_config_opts += -no-eglfs
 $(package)_config_opts += -no-freetype
-$(package)_config_opts += -no-gif
 $(package)_config_opts += -no-glib
 $(package)_config_opts += -no-icu
 $(package)_config_opts += -no-iconv
@@ -72,6 +71,7 @@ $(package)_config_opts += -pkg-config
 $(package)_config_opts += -prefix $(host_prefix)
 $(package)_config_opts += -qt-libpng
 $(package)_config_opts += -qt-libjpeg
+$(package)_config_opts += -gif
 $(package)_config_opts += -qt-pcre
 $(package)_config_opts += -qt-harfbuzz
 $(package)_config_opts += -system-zlib
@@ -110,11 +110,19 @@ $(package)_config_opts_linux += -system-freetype
 $(package)_config_opts_linux += -no-feature-sessionmanager
 $(package)_config_opts_linux += -fontconfig
 $(package)_config_opts_linux += -no-opengl
+<<<<<<< HEAD
 $(package)_config_opts_arm_linux += -platform linux-g++ -xplatform eros-linux-g++
 $(package)_config_opts_i686_linux  = -xplatform linux-g++-32
 $(package)_config_opts_x86_64_linux = -xplatform linux-g++-64
 $(package)_config_opts_aarch64_linux = -xplatform linux-aarch64-gnu-g++
 $(package)_config_opts_riscv64_linux = -platform linux-g++ -xplatform eros-linux-g++
+=======
+$(package)_config_opts_arm_linux += -platform linux-g++ -xplatform rdct-linux-g++
+$(package)_config_opts_i686_linux  = -xplatform linux-g++-32
+$(package)_config_opts_x86_64_linux = -xplatform linux-g++-64
+$(package)_config_opts_aarch64_linux = -xplatform linux-aarch64-gnu-g++
+$(package)_config_opts_riscv64_linux = -platform linux-g++ -xplatform rdct-linux-g++
+>>>>>>> clean
 $(package)_config_opts_s390x_linux += -platform linux-g++ -xplatform linux-g++-64
 $(package)_config_opts_powerpc_linux += -platform linux-g++ -xplatform linux-g++-32
 $(package)_config_opts_powerpc64le_linux += -platform linux-g++ -xplatform linux-g++-64
@@ -172,8 +180,13 @@ define $(package)_preprocess_cmds
   sed -i.old "s|QMAKE_RANLIB=\$$$$\$$$${CROSS_COMPILE}|QMAKE_RANLIB=$(host_prefix)/native/bin/\$$$$\$$$${CROSS_COMPILE}|" qtbase/mkspecs/macx-clang-linux/qmake.conf && \
   sed -i.old "s|QMAKE_LIBTOOL=\$$$$\$$$${CROSS_COMPILE}|QMAKE_LIBTOOL=$(host_prefix)/native/bin/\$$$$\$$$${CROSS_COMPILE}|" qtbase/mkspecs/macx-clang-linux/qmake.conf && \
   sed -i.old "s|QMAKE_INSTALL_NAME_TOOL=\$$$$\$$$${CROSS_COMPILE}|QMAKE_INSTALL_NAME_TOOL=$(host_prefix)/native/bin/\$$$$\$$$${CROSS_COMPILE}|" qtbase/mkspecs/macx-clang-linux/qmake.conf && \
+<<<<<<< HEAD
   cp -r qtbase/mkspecs/linux-arm-gnueabi-g++ qtbase/mkspecs/eros-linux-g++ && \
   sed -i.old "s/arm-linux-gnueabi-/$(host)-/g" qtbase/mkspecs/eros-linux-g++/qmake.conf && \
+=======
+  cp -r qtbase/mkspecs/linux-arm-gnueabi-g++ qtbase/mkspecs/rdct-linux-g++ && \
+  sed -i.old "s/arm-linux-gnueabi-/$(host)-/g" qtbase/mkspecs/rdct-linux-g++/qmake.conf && \
+>>>>>>> clean
   patch -p1 -i $($(package)_patch_dir)/fix_qt_pkgconfig.patch &&\
   patch -p1 -i $($(package)_patch_dir)/fix_configure_mac.patch &&\
   patch -p1 -i $($(package)_patch_dir)/fix_no_printer.patch &&\

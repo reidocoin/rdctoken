@@ -1,0 +1,81 @@
+policy_module(rdct, 1.100.1)
+
+########################################
+#
+# Declarations
+#
+
+type rdct_t;
+type rdct_exec_t;
+init_daemon_domain(rdct_t, rdct_exec_t)
+
+permissive rdct_t;
+
+type rdct_initrc_exec_t;
+init_script_file(rdct_initrc_exec_t)
+
+type rdct_conf_t;
+files_type(rdct_conf_t)
+
+type rdct_var_lib_t;
+files_type(rdct_var_lib_t)
+
+type rdct_var_run_t;
+files_type(rdct_var_run_t)
+
+type rdct_port_t;
+corenet_port(rdct_port_t)
+
+########################################
+#
+# rdct local policy
+#
+allow rdct_t self:process { fork };
+
+allow rdct_t self:fifo_file rw_fifo_file_perms;
+allow rdct_t self:unix_stream_socket create_stream_socket_perms;
+
+manage_dirs_pattern(rdct_t, rdct_conf_t, rdct_conf_t)
+manage_files_pattern(rdct_t, rdct_conf_t, rdct_conf_t)
+
+manage_dirs_pattern(rdct_t, rdct_var_lib_t, rdct_var_lib_t)
+manage_files_pattern(rdct_t, rdct_var_lib_t, rdct_var_lib_t)
+files_var_lib_filetrans(rdct_t, rdct_var_lib_t, { dir file })
+
+manage_dirs_pattern(rdct_t, rdct_var_run_t, rdct_var_run_t)
+manage_files_pattern(rdct_t, rdct_var_run_t, rdct_var_run_t)
+
+sysnet_dns_name_resolve(rdct_t)
+corenet_all_recvfrom_unlabeled(rdct_t)
+
+allow rdct_t self:tcp_socket create_stream_socket_perms;
+corenet_tcp_sendrecv_generic_if(rdct_t)
+corenet_tcp_sendrecv_generic_node(rdct_t)
+corenet_tcp_sendrecv_all_ports(rdct_t)
+corenet_tcp_bind_generic_node(rdct_t)
+
+gen_require(`
+    type rdct_port_t;
+')
+allow rdct_t rdct_port_t:tcp_socket name_bind;
+
+gen_require(`
+    type rdct_port_t;
+')
+allow rdct_t rdct_port_t:tcp_socket name_connect;
+
+domain_use_interactive_fds(rdct_t)
+
+files_read_etc_files(rdct_t)
+
+miscfiles_read_localization(rdct_t)
+
+sysnet_dns_name_resolve(rdct_t)
+
+allow rdct_t rdct_exec_t:file execute_no_trans;
+allow rdct_t self:process setsched;
+corecmd_exec_ls(rdct_t)
+corenet_tcp_connect_http_port(rdct_t)
+dev_read_urand(rdct_t)
+fs_getattr_xattr_fs(rdct_t)
+kernel_read_system_state(rdct_t)

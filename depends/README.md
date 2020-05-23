@@ -20,7 +20,6 @@ created. To use it for Bitcoin:
 
 Common `host-platform-triplets` for cross compilation are:
 
-- `i686-w64-mingw32` for Win32
 - `x86_64-w64-mingw32` for Win64
 - `x86_64-apple-darwin14` for macOS
 - `arm-linux-gnueabihf` for Linux ARM 32 bit
@@ -58,7 +57,11 @@ For linux RISC-V 64-bit cross compilation (there are no packages for 32-bit):
 
     sudo apt-get install g++-riscv64-linux-gnu binutils-riscv64-linux-gnu
 
+<<<<<<< HEAD
 RISC-V known issue: gcc-7.3.0 and gcc-7.3.1 result in a broken `test_eros` executable (see https://github.com/bitcoin/bitcoin/pull/13543),
+=======
+RISC-V known issue: gcc-7.3.0 and gcc-7.3.1 result in a broken `test_rdct` executable (see https://github.com/bitcoin/bitcoin/pull/13543),
+>>>>>>> clean
 this is apparently fixed in gcc-8.1.0.
 
 ### Dependency Options
