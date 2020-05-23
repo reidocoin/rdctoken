@@ -1,0 +1,14 @@
+prefix=/home/brunoha/src/rdctoken/depends/x86_64-pc-linux-gnu
+exec_prefix=${prefix}
+libdir=${prefix}/lib
+includedir=${prefix}/include
+
+
+Name: Qt5 ServiceSupport
+Description: Qt ServiceSupport module
+Version: 5.9.7
+Libs: -L${libdir} -lQt5ServiceSupport 
+Libs.private: -L/home/brunoha/src/rdctoken/depends/x86_64-pc-linux-gnu/lib -lQt5Gui -lqtlibpng -lqtharfbuzz -lQt5Core -lm -lz -lqtpcre2 -ldl -lpthread  
+Cflags: -I${includedir}/QtServiceSupport 
+Requires: Qt5Core Qt5Gui
+

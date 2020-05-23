@@ -1,0 +1,14 @@
+prefix=/home/brunoha/src/rdctoken/depends/x86_64-pc-linux-gnu
+exec_prefix=${prefix}
+libdir=${prefix}/lib
+includedir=${prefix}/include
+
+
+Name: Qt5 Svg
+Description: Qt Svg module
+Version: 5.9.7
+Libs: -L${libdir} -lQt5Svg 
+Libs.private: -L/home/brunoha/src/rdctoken/depends/work/build/x86_64-pc-linux-gnu/qt/5.9.7-8903d243f6e/qtbase/lib -lQt5Widgets -lQt5Gui -lqtlibpng -lqtharfbuzz -lQt5Core -lm -lz -lqtpcre2 -ldl -lpthread -lz 
+Cflags: -I${includedir}/QtSvg 
+Requires: Qt5Core Qt5Gui Qt5Widgets
+
