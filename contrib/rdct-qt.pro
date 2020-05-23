@@ -5,7 +5,7 @@
 DEFINES += ENABLE_WALLET
 
 TEMPLATE = app
-TARGET =
+TARGET = 
 DEPENDPATH += . \
               src \
               src/compat \
@@ -56,8 +56,7 @@ INCLUDEPATH += . \
                src/secp256k1/src/java
 
 # Input
-HEADERS += src/bignum.h \
-           src/activemasternode.h \
+HEADERS += src/activemasternode.h \
            src/addrman.h \
            src/alert.h \
            src/allocators.h \
@@ -77,6 +76,8 @@ HEADERS += src/bignum.h \
            src/compressor.h \
            src/core_io.h \
            src/crypter.h \
+           src/obfuscation-relay.h \
+           src/obfuscation.h \
            src/rdct-config.h \
            src/db.h \
            src/eccryptoverify.h \
@@ -96,7 +97,6 @@ HEADERS += src/bignum.h \
            src/masternode.h \
            src/masternodeconfig.h \
            src/masternodeman.h \
-           src/masternode-helpers.h \
            src/merkleblock.h \
            src/miner.h \
            src/mruset.h \
@@ -175,6 +175,7 @@ HEADERS += src/bignum.h \
            src/qt/coincontroldialog.h \
            src/qt/coincontroltreewidget.h \
            src/qt/csvmodelwriter.h \
+           src/qt/obfuscationconfig.h \
            src/qt/editaddressdialog.h \
            src/qt/guiconstants.h \
            src/qt/guiutil.h \
@@ -339,6 +340,7 @@ HEADERS += src/bignum.h \
 FORMS += src/qt/forms/addressbookpage.ui \
          src/qt/forms/askpassphrasedialog.ui \
          src/qt/forms/coincontroldialog.ui \
+         src/qt/forms/obfuscationconfig.ui \
          src/qt/forms/editaddressdialog.ui \
          src/qt/forms/helpmessagedialog.ui \
          src/qt/forms/intro.ui \
@@ -369,6 +371,8 @@ SOURCES += src/activemasternode.cpp \
            src/core_read.cpp \
            src/core_write.cpp \
            src/crypter.cpp \
+           src/obfuscation-relay.cpp \
+           src/obfuscation.cpp \
            src/rdct-cli.cpp \
            src/rdct-tx.cpp \
            src/rdct.cpp \
@@ -390,7 +394,6 @@ SOURCES += src/activemasternode.cpp \
            src/masternode.cpp \
            src/masternodeconfig.cpp \
            src/masternodeman.cpp \
-           src/masternode-helpers.cpp \
            src/merkleblock.cpp \
            src/miner.cpp \
            src/net.cpp \
@@ -466,6 +469,7 @@ SOURCES += src/activemasternode.cpp \
            src/qt/coincontroldialog.cpp \
            src/qt/coincontroltreewidget.cpp \
            src/qt/csvmodelwriter.cpp \
+           src/qt/obfuscationconfig.cpp \
            src/qt/rdct.cpp \
            src/qt/rdctstrings.cpp \
            src/qt/editaddressdialog.cpp \
@@ -654,3 +658,6 @@ TRANSLATIONS += src/qt/locale/rdct_bg.ts \
                 src/qt/locale/rdct_vi.ts \
                 src/qt/locale/rdct_zh_CN.ts \
                 src/qt/locale/rdct_zh_TW.ts
+
+DISTFILES += \
+    README.md

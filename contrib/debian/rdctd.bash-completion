@@ -1,1 +1,2 @@
 contrib/rdctd.bash-completion	rdctd
+contrib/rdct-cli.bash-completion rdct-cli

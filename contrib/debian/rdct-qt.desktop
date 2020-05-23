@@ -1,0 +1,13 @@
+[Desktop Entry]
+Version=1.0
+Name=RDCToken
+Comment=RDCToken P2P Cryptocurrency
+Comment[fr]=RDCToken, monnaie virtuelle cryptographique pair à pair
+Comment[tr]=RDCToken, eşten eşe kriptografik sanal para birimi
+Exec=rdct-qt %u
+Terminal=false
+Type=Application
+Icon=rdct128
+MimeType=x-scheme-handler/rdct;
+Categories=Office;Finance;
+StartupWMClass=Pivx-qt
