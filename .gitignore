@@ -137,5 +137,3 @@ moc_*
 *.tmp
 ui_*
 build*
-rdctd.*
-rdctd-new-gui.*
