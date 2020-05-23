@@ -83,7 +83,6 @@ src/qt/test/moc*.cpp
 
 # Compilation and Qt preprocessor part
 *.qm
-Makefile
 rdct-qt
 RDCToken-Qt.app
 background.tiff*
