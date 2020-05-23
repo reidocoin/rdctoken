@@ -122,8 +122,6 @@ qa/pull-tester/cache/*
 qa/pull-tester/test.*/*
 cache/*
 
-!src/leveldb*/Makefile
-
 .cproject
 .project
 /doc/doxygen/
