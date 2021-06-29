@@ -1,3 +1,4 @@
+#include <QStyle>
 #include "multisenddialog.h"
 #include "addressbookpage.h"
 #include "base58.h"
